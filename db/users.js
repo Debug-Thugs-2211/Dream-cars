@@ -1,3 +1,5 @@
+const client = require('./client');
+
 const createUser = async ({ username, password, firstName, lastName }) => {
     try {
         const {
