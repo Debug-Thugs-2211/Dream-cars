@@ -1,5 +1,6 @@
 const { createUser } = require('./users');
 const { createCar } = require('./cars');
+const { createPurchase } = require('./purchases');
 const client = require('./client');
 
 const dropTables = async () => {
@@ -22,7 +23,7 @@ const createTables = async () => {
     try {
         await client.query(
             `
-            CREATE TABLE users(
+            CREATE TABLE users (
                 id SERIAL PRIMARY KEY,
                 username VARCHAR(255) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
@@ -30,7 +31,7 @@ const createTables = async () => {
                 "lastName" VARCHAR(255) NOT NULL
             );
 
-            CREATE TABLE cars(
+            CREATE TABLE cars (
                 id SERIAL PRIMARY KEY,
                 make VARCHAR(30) NOT NULL,
                 model VARCHAR(55) NOT NULL,
@@ -41,9 +42,10 @@ const createTables = async () => {
 
             CREATE TABLE purchases (
                 id SERIAL PRIMARY KEY,
-                "userID" INTEGER REFERENCES users(id),
+                "firstName" VARCHAR(255) REFERENCES users(firstName),
+                "lastName" VARCHAR(255) REFERENCES users(lastName)
                 cost INTEGER,
-                item VARCHAR(55) REFERENCES cars(id),
+                "itemId" INTEGER REFERENCES cars(id)
             );
         `)
     } catch (err) {
@@ -53,6 +55,7 @@ const createTables = async () => {
 
 const createInitialUsers = async () => {
     console.log("Starting to create users...");
+   
     try {
         const usersToCreate = [
         { username: "albert", password: "bertie99", firstName: "Albert", lastName: "Smith" },
@@ -60,6 +63,7 @@ const createInitialUsers = async () => {
         { username: "glamgal", password: "glamgal123", firstName: "Glamorous", lastName: "Chic" },
         ];
         const users = await Promise.all(usersToCreate.map(createUser));
+        
 
         console.log("Users created:");
         console.log(users);
@@ -71,6 +75,7 @@ const createInitialUsers = async () => {
 }
 
 const createInitialPosts = async () => {
+    console.log("Starting to create posts...")
     try {
         const postsToCreate = [
             {
@@ -90,14 +95,12 @@ const createInitialPosts = async () => {
             {
                 make: "Ford",
                 model: "F-150",
-                year: "2022",
+                year: 2022,
                 color: "black",
                 mileage: 15000
             }
         ]
-        const cars = await Promise.all(
-            postsToCreate.map(createCar)
-          );
+        const cars = await Promise.all(postsToCreate.map(createCar));
       
           console.log("Posts created:");
           console.log(cars);
@@ -109,12 +112,46 @@ const createInitialPosts = async () => {
     
 }
 
+const createInitialPurchases = async () => {
+    console.log("Starting to create purchases...");
+    try {
+        const purchasesMade = [
+            {
+                firstName: "Albert",
+                lastName: "Smith",
+                cost: 20000,
+                itemId: 2
+            },
+            {
+                firstName: "Sandra",
+                lastName: "Scott",
+                cost: 15000,
+                itemId: 3
+            },
+            {
+                firstName: "Glamorous",
+                lastName: "Chic",
+                cost: 30000,
+                itemId: 1
+            }
+        ]
+        const purchases = await Promise.all(purchasesMade.map(createPurchase));
+        console.log("Purchases created...");
+        console.log(purchases);
+        console.log("Finished creating purchases!")
+    } catch (err) {
+      console.log(err);
+    }
+      
+}
+
 const rebuildDB = async () => {
     try {
         await dropTables();
         await createTables();
         await createInitialUsers();
         await createInitialPosts();
+        await createInitialPurchases();
     } catch (error) {
         console.log("Error during rebuildDB");
         throw error;
