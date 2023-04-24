@@ -62,7 +62,46 @@ const getCarById = async (id) => {
   }
 }
 
+const updateCar = async (id, ...fields) => {
+  const setString = Object.keys(fields.updateFields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(",");
+    if (setString.length === 0) {
+      return;
+    }
+  try {
+    const {
+      rows: [car]
+    } = await client.query(
+      `
+      UPDATE cars
+      SET ${setString}
+      WHERE id=${id}
+      RETURNING *;
+      `,
+      Object.values(fields.updateFields)
+    );
+    return car;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const deleteCar = async (id) => {
+  try {
+    const { rows } = await client.query(
+      `
+      DELETE
+      FROM cars
+      WHERE id=${id};
+      `
+    )
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 
 
-module.exports = { createCar, getAllCars, getCarByMake, getCarById }
+
+module.exports = { createCar, getAllCars, getCarByMake, getCarById, updateCar, deleteCar }
