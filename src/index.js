@@ -1,17 +1,33 @@
 import React from "react";
-import Posts from "./Posts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Posts from "./components/Posts";
+import "./App.css";
+import { Login } from "./components/Login";
+import Register from "./components/Register";
+import Checkout from "./components/checkout";
 
 const App = () => {
   return (
-    <div>
-      <h1>Dream Cars</h1>
-      <button className="btn btn-primary">Hello</button>
+    <div id="app">
+      <NavBar />
+      <Routes>
+        <Route path="/Posts" element={<Posts />} />
+        <Route path="Login" element={<Login />} />
+        <Route path="Register" element={<Register />} />
+        <Route path="checkout" element={<Checkout />} />
+      </Routes>
     </div>
   );
 };
 
-import { createRoot } from "react-dom/client";
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
