@@ -42,8 +42,8 @@ const createTables = async () => {
 
             CREATE TABLE purchases (
                 id SERIAL PRIMARY KEY,
-                "firstName" VARCHAR(255) REFERENCES users(firstName),
-                "lastName" VARCHAR(255) REFERENCES users(lastName)
+                "firstName" REFERENCES users(id),
+                "lastName" REFERENCES users(id),
                 cost INTEGER,
                 "itemId" INTEGER REFERENCES cars(id)
             );
