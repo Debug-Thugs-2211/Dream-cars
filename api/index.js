@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { JWT_SECRET } = process.env;
 const jwt = require("jsonwebtoken");
+const { getUserById } = require("../db/users");
 
 router.use(async (req, res, next) => {
   const prefix = "Bearer ";
@@ -29,12 +30,27 @@ router.use(async (req, res, next) => {
   }
 });
 
+// GET /api/health just for testing the server:
+
 router.get("/health", async (req, res, next) => {
   try {
     res.send("API Healthy");
   } catch (error) {
     next(error);
   }
+});
+
+// ROUTER: /api/users
+const usersRouter = require("./users");
+router.use("/users", usersRouter);
+
+// router error handler:
+router.use((error, req, res, next) => {
+  res.send({
+    error: error.message,
+    name: error.name,
+    message: error.message,
+  });
 });
 
 module.exports = router;
