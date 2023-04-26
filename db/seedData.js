@@ -1,12 +1,14 @@
+const client = require('./client');
 const { createUser } = require('./users');
 const { createCar } = require('./cars');
 const { createPurchase } = require('./purchases');
-const client = require('./client');
+
 
 const dropTables = async () => {
     console.log("Dropping tables...");
     try {
-        await client.query(`
+        await client.query(
+        `
         DROP TABLE IF EXISTS purchases;
         DROP TABLE IF EXISTS cars;
         DROP TABLE IF EXISTS users;
@@ -23,7 +25,7 @@ const createTables = async () => {
     try {
         await client.query(
             `
-            CREATE TABLE users (
+            CREATE TABLE users(
                 id SERIAL PRIMARY KEY,
                 username VARCHAR(255) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
@@ -31,23 +33,24 @@ const createTables = async () => {
                 "lastName" VARCHAR(255) NOT NULL
             );
 
-            CREATE TABLE cars (
+            CREATE TABLE cars(
                 id SERIAL PRIMARY KEY,
                 make VARCHAR(30) NOT NULL,
                 model VARCHAR(55) NOT NULL,
+                price INTEGER NOT NULL,
                 year INTEGER NOT NULL,
                 color VARCHAR(20) NOT NULL,
                 mileage INTEGER NOT NULL
             );
 
-            CREATE TABLE purchases (
+            CREATE TABLE purchases(
                 id SERIAL PRIMARY KEY,
-                "firstName" REFERENCES users(id),
-                "lastName" REFERENCES users(id),
+                "userId" INTEGER REFERENCES users(id),
                 cost INTEGER,
                 "itemId" INTEGER REFERENCES cars(id)
             );
-        `)
+        `
+        )
     } catch (err) {
       console.log(err);
     }
@@ -81,6 +84,7 @@ const createInitialPosts = async () => {
             {
                 make: "Honda",
                 model: "Civic",
+                price: 1000,
                 year: 2020,
                 color: "blue",
                 mileage: 25000
@@ -88,6 +92,7 @@ const createInitialPosts = async () => {
             {
                 make: "Toyota",
                 model: "4Runner",
+                price: 1000,
                 year: 2015,
                 color: "green",
                 mileage: 40000
@@ -95,6 +100,7 @@ const createInitialPosts = async () => {
             {
                 make: "Ford",
                 model: "F-150",
+                price: 1000,
                 year: 2022,
                 color: "black",
                 mileage: 15000
@@ -102,10 +108,10 @@ const createInitialPosts = async () => {
         ]
         const cars = await Promise.all(postsToCreate.map(createCar));
       
-          console.log("Posts created:");
-          console.log(cars);
-      
-          console.log("Finished creating posts!");
+        console.log("Posts created:");
+        console.log(cars);
+    
+        console.log("Finished creating posts!");
     } catch (err) {
       console.log(err);
     }
@@ -117,20 +123,17 @@ const createInitialPurchases = async () => {
     try {
         const purchasesMade = [
             {
-                firstName: "Albert",
-                lastName: "Smith",
+                userId: 1,
                 cost: 20000,
                 itemId: 2
             },
             {
-                firstName: "Sandra",
-                lastName: "Scott",
+                userId: 3,
                 cost: 15000,
                 itemId: 3
             },
             {
-                firstName: "Glamorous",
-                lastName: "Chic",
+                userId: 2,
                 cost: 30000,
                 itemId: 1
             }
@@ -159,5 +162,5 @@ const rebuildDB = async () => {
 }
 
 module.exports = { 
-    rebuildDB, dropTables, createTables 
-}
+    rebuildDB, dropTables, createTables, 
+};
