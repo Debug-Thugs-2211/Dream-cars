@@ -6,6 +6,7 @@ const { PasswordTooShortError, UserTakenError } = require("../errors");
 
 router.post("/register", async (req, res, next) => {
   const { username, id, password, firstName, lastName } = req.body;
+  console.log("USERS: ", req.body);
   try {
     const _user = await getUserByUsername(username);
     if (_user) {
