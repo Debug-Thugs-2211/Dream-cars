@@ -34,6 +34,7 @@ router.use(async (req, res, next) => {
 
 router.get("/health", async (req, res, next) => {
   try {
+    console.log("hello health");
     res.send("API Healthy");
   } catch (error) {
     next(error);
@@ -42,6 +43,7 @@ router.get("/health", async (req, res, next) => {
 
 // ROUTER: /api/users
 const usersRouter = require("./users");
+console.log(usersRouter);
 router.use("/users", usersRouter);
 
 // router error handler:

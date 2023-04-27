@@ -15,15 +15,9 @@ function Register({ setToken, navigate }) {
 
   const handleSubmit = async () => {
     const results = await registerUser(username, password, firstName, lastName);
-    console.log(results);
-    if (results.data.token) {
-      setToken(results.data.token);
-      window.localStorage.setItem("token", results.data.token);
-      swal("Congratulation!! account has been created");
-      navigate("/posts");
-    } else {
-      swal("User already exists!", "Please login instead.");
-    }
+    console.log(results, "Results from register submit");
+    swal("Congratulation!! account has been created");
+    navigate("/posts");
   };
 
   return (
