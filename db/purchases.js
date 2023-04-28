@@ -1,15 +1,15 @@
 const client = require('./client');
 
-const createPurchase = async (id, userId, cost, itemId) => {
+const createPurchase = async ({ userId, cost, itemId }) => {
     try {
         const { rows: [purchases] } = await client.query(
             `
-            INSERT INTO purchases(id, "userId", cost, "itemId")
-            VALUES ($1, $2, $3, $4)
+            INSERT INTO purchases("userId", cost, "itemId")
+            VALUES ($1, $2, $3)
             RETURNING *;
             
             `,
-            [id, userId, cost, itemId]
+            [ userId, cost, itemId]
         );
         return purchases;
     } catch (err) {
