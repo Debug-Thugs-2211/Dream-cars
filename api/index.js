@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db/users");
 
 router.use(async (req, res, next) => {
-  const prefix = "Bearer ";
+  const prefix = "Bearer";
   const auth = req.header("authorization");
   if (!auth) {
     next();
@@ -34,6 +34,7 @@ router.use(async (req, res, next) => {
 
 router.get("/health", async (req, res, next) => {
   try {
+    console.log("hello health");
     res.send("API Healthy");
   } catch (error) {
     next(error);

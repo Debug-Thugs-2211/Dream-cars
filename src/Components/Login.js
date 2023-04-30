@@ -1,37 +1,86 @@
 import React, { useState } from "react";
+import { TextField, Button } from "@material-ui/core";
+import { AccountCircle, Lock } from "@material-ui/icons";
+import "./Register.css";
+import swal from "sweetalert";
+import { Link } from "react-router-dom";
+import { loginUser } from "../api";
 
-export const Login = (props) => {
-  const { email, setEmail } = useState("");
-  const { pass, SetPass } = useState("");
+function Login({ setToken, navigate }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const sumbitted = () => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    const results = await loginUser(username, password);
+
+    if (results.success) {
+      setToken(results.token);
+      window.localStorage.setItem("token", results.token);
+      navigate("/posts");
+    } else {
+      swal(
+        "Invalid login credentials!",
+        "Please try again or create an account."
+      );
+    }
   };
+
   return (
-    <div className="auth-container">
-      <h2>Login</h2>
-      <form className="login-form" onSubmit={sumbitted}>
-        <label htmlFor="email">Email</label>
-        <input
-          value={email}
-          type="email"
-          placeholder="example@gmail.com"
-          id="email"
-          name="email"
-        ></input>
-        <label htmlFor="password">Password</label>
-        <input
-          value={pass}
-          type="password"
-          placeholder="*******"
+    <div className="div-form">
+      <form
+        className="register-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmit();
+          setUsername("");
+          setPassword("");
+        }}
+      >
+        <h3>Login Please</h3>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="username"
+          label="Username"
+          name="username"
+          autoComplete="username"
+          autoFocus
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          InputProps={{
+            startAdornment: <AccountCircle />,
+          }}
+        />
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
           id="password"
+          label="Password"
           name="password"
-        ></input>
-        <button type="submit">Log in</button>
+          type="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          InputProps={{
+            startAdornment: <Lock />,
+          }}
+        />
+
+        <Button type="submit" fullWidth variant="contained" color="primary">
+          Login
+        </Button>
+        <div className="signup">
+          <div>Don't have an account? </div>
+          <Link to="/register" className="signUpLink">
+            SIGN UP HERE
+          </Link>
+        </div>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch("Login")}>
-        Oops! Don't have an account? Register Now!
-      </button>
     </div>
   );
-};
+}
+
+export default Login;

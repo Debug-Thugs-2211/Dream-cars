@@ -1,12 +1,12 @@
 const express = require("express");
-const router = express.Router();
+const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const { getUserByUsername, getUser } = require("../db/users");
 const { JWT_SECRET } = process.env;
 const { PasswordTooShortError, UserTakenError } = require("../errors");
 
-router.post("/register", async (req, res, next) => {
+usersRouter.post("/register", async (req, res, next) => {
   const { username, id, password, firstName, lastName } = req.body;
-  console.log("USERS: ", req.body);
   try {
     const _user = await getUserByUsername(username);
     if (_user) {
@@ -51,7 +51,7 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.post("/login", async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
   // request must have both
@@ -84,4 +84,4 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = usersRouter;
