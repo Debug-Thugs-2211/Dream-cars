@@ -1,7 +1,9 @@
 const client = require("./client");
+const bcrypt = require("bcrypt");
+const SALT_COUNT = 10;
 
 const createUser = async ({ username, password, firstName, lastName }) => {
-  console.log("DB USERS: ");
+  const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
   try {
     const {
       rows: [user],
@@ -9,9 +11,10 @@ const createUser = async ({ username, password, firstName, lastName }) => {
       `
             INSERT INTO users(username, password, "firstName", "lastName")
             VALUES ($1, $2, $3, $4)
-            RETURNING username, "firstName", "lastName"
+            ON CONFLICT(username) DO NOTHING
+            RETURNING id, username, "firstName", "lastName"
             `,
-      [username, password, firstName, lastName]
+      [username, hashedPassword, firstName, lastName]
     );
     return user;
   } catch (err) {
@@ -37,6 +40,20 @@ const getUserByUsername = async (username) => {
   }
 };
 
+async function getUser({ username, password }) {
+  try {
+    const user = await getUserByUsername(username);
+    if (!user) return;
+    const hashedPassword = user.password;
+    const passwordsMatch = await bcrypt.compare(password, hashedPassword);
+    if (!passwordsMatch) return;
+    delete user.password;
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const getUserById = async (userId) => {
   try {
     const {
@@ -56,4 +73,4 @@ const getUserById = async (userId) => {
   }
 };
 
-module.exports = { createUser, getUserByUsername, getUserById };
+module.exports = { createUser, getUserByUsername, getUserById, getUser };

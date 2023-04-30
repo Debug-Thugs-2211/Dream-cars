@@ -1,12 +1,11 @@
 const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const { getUserByUsername } = require("../db/users");
+const { getUserByUsername, getUser } = require("../db/users");
 const { JWT_SECRET } = process.env;
 const { PasswordTooShortError, UserTakenError } = require("../errors");
 
 usersRouter.post("/register", async (req, res, next) => {
-  console.log("USERS: Hello");
   const { username, id, password, firstName, lastName } = req.body;
   try {
     const _user = await getUserByUsername(username);
@@ -64,7 +63,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 
   try {
-    const user = await getUserByUsername({ username });
+    const user = await getUser({ username, password });
 
     if (!user) {
       next({

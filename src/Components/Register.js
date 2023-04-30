@@ -11,13 +11,17 @@ function Register({ setToken, navigate }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async () => {
     const results = await registerUser(username, password, firstName, lastName);
-    console.log(results, "Results from register submit");
-    swal("Congratulation!! account has been created");
-    navigate("/posts");
+    if (results.success) {
+      setToken(results.data.token);
+      window.localStorage.setItem("token", results.data.token);
+      swal("Congratulation!! account has been created");
+      navigate("/posts");
+    } else {
+      swal("User already exists!", "Please login instead.");
+    }
   };
 
   return (
@@ -31,7 +35,6 @@ function Register({ setToken, navigate }) {
           setFirstName("");
           setLastName("");
           setPassword("");
-          setConfirmPassword("");
         }}
       >
         <h3>Sign Up Please!</h3>
@@ -93,7 +96,7 @@ function Register({ setToken, navigate }) {
             startAdornment: <Lock />,
           }}
         />
-        <TextField
+        {/* <TextField
           variant="outlined"
           margin="normal"
           fullWidth
@@ -107,7 +110,7 @@ function Register({ setToken, navigate }) {
           InputProps={{
             startAdornment: <Lock />,
           }}
-        />
+        /> */}
         <Button type="submit" fullWidth variant="contained" color="primary">
           Register
         </Button>

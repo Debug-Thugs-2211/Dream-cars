@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Posts from "./components/Posts";
 import "./App.css";
-import { Login } from "./components/Login";
+import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/checkout";
 import Home from "./components/Home";
@@ -37,7 +37,10 @@ const App = () => {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/Posts" element={<Posts />} />
-        <Route path="Login" element={<Login />} />
+        <Route
+          path="Login"
+          element={<Login setToken={setToken} navigate={navigate} />}
+        />
         <Route
           path="Register"
           element={<Register setToken={setToken} navigate={navigate} />}
