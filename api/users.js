@@ -1,12 +1,13 @@
 const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const { getUserByUsername, getUser } = require("../db/users");
+const { getUserByUsername, getUser, createUser } = require("../db/users");
+const { PasswordTooShortError, UserTakenError } = require("../error");
 const { JWT_SECRET } = process.env;
-const { PasswordTooShortError, UserTakenError } = require("../errors");
 
 usersRouter.post("/register", async (req, res, next) => {
-  const { username, id, password, firstName, lastName } = req.body;
+  const { id, username, password, firstName, lastName } = req.body;
+  console.log("REGISTER: ", req.body);
   try {
     const _user = await getUserByUsername(username);
     if (_user) {
@@ -52,6 +53,7 @@ usersRouter.post("/register", async (req, res, next) => {
 });
 
 usersRouter.post("/login", async (req, res, next) => {
+  console.log("TEST: ", req.body);
   const { username, password } = req.body;
 
   // request must have both

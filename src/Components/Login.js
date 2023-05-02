@@ -13,7 +13,7 @@ function Login({ setToken, navigate }) {
   const handleSubmit = async () => {
     const results = await loginUser(username, password);
 
-    if (results.success) {
+    if (results.token) {
       setToken(results.token);
       window.localStorage.setItem("token", results.token);
       navigate("/posts");

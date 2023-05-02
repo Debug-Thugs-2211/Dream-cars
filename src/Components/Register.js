@@ -11,16 +11,44 @@ function Register({ setToken, navigate }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async () => {
-    const results = await registerUser(username, password, firstName, lastName);
-    if (results.success) {
-      setToken(results.data.token);
-      window.localStorage.setItem("token", results.data.token);
-      swal("Congratulation!! account has been created");
-      navigate("/posts");
+    if (password.length < 8) {
+      swal({
+        icon: "error",
+        title: "Oops...",
+        text: "Password must be at least 8 characters.",
+      });
+      setPassword("");
+      setConfirmPassword("");
+    } else if (password !== confirmPassword) {
+      swal({
+        icon: "error",
+        title: "Oops...",
+        text: "Password and confirm password does not match",
+      });
+      setPassword("");
+      setConfirmPassword("");
     } else {
-      swal("User already exists!", "Please login instead.");
+      const results = await registerUser(
+        username,
+        password,
+        firstName,
+        lastName
+      );
+      if (results.token) {
+        setToken(results.token);
+        window.localStorage.setItem("token", results.token);
+        swal("Congratulation!! account has been created");
+        setUsername("");
+        setFirstName("");
+        setLastName("");
+        setPassword("");
+        navigate("/posts");
+      } else {
+        swal("User already exists!", "Please login instead.");
+      }
     }
   };
 
@@ -31,10 +59,6 @@ function Register({ setToken, navigate }) {
         onSubmit={(event) => {
           event.preventDefault();
           handleSubmit();
-          setUsername("");
-          setFirstName("");
-          setLastName("");
-          setPassword("");
         }}
       >
         <h3>Sign Up Please!</h3>
@@ -96,7 +120,7 @@ function Register({ setToken, navigate }) {
             startAdornment: <Lock />,
           }}
         />
-        {/* <TextField
+        <TextField
           variant="outlined"
           margin="normal"
           fullWidth
@@ -110,7 +134,7 @@ function Register({ setToken, navigate }) {
           InputProps={{
             startAdornment: <Lock />,
           }}
-        /> */}
+        />
         <Button type="submit" fullWidth variant="contained" color="primary">
           Register
         </Button>
