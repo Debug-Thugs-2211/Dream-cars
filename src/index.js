@@ -17,6 +17,12 @@ const App = () => {
 
   const navigate = useNavigate();
 
+  function logout() {
+    window.localStorage.removeItem("token");
+    setToken("");
+    window.reload();
+  }
+
   const getMe = async () => {
     const storedToken = window.localStorage.getItem("token");
     if (!token) {
@@ -33,7 +39,7 @@ const App = () => {
 
   return (
     <div id="app">
-      <NavBar />
+      <NavBar logout={logout} token={token} />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/Posts" element={<Posts />} />
