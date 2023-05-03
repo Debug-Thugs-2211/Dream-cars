@@ -55,6 +55,7 @@
 
 .search-bar {
   float: right;
+  margin-top: 5px;
 }
 
 .create-post {
