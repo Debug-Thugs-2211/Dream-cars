@@ -40,11 +40,37 @@ export const loginUser = async (username, password) => {
   }
 };
 
-const getAllCars = async () => {
-  const response = await fetch("http://localhost:4000/api/cars");
-  const results = await response.json();
-  console.log("CARS: ", results);
-  return results;
+export const createPost = async (
+  make,
+  model,
+  price,
+  year,
+  color,
+  mileage,
+  imageUrl,
+  condition
+) => {
+  try {
+    const response = await fetch("http://localhost:4000/api/cars/createPost", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        make: make,
+        model: model,
+        price: price,
+        year: year,
+        color: color,
+        mileage: mileage,
+        imageUrl: imageUrl,
+        condition: condition,
+      }),
+    });
+    const results = response.json();
+    return results;
+  } catch (error) {
+    console.log("this is an error message");
+  }
 };
-
-getAllCars();

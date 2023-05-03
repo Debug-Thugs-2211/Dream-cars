@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import CreatePost from "./Create-post";
 
 import "./Posts.css";
 import SinglePost from "./SinglePost";
@@ -10,8 +12,10 @@ const Posts = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // const handleCard = (event) => {
+  //   console.log(event.type);
   //   if (event.type === "mousedown") {
-  //     setCarInfo(false);
+
+  //     return;
   //   }
   // };
   const fetchCars = async () => {
@@ -21,7 +25,7 @@ const Posts = () => {
   };
 
   const postMatches = (cars, string) => {
-    const { make, model, year } = cars;
+    const { make, model } = cars;
     if (
       make.toLowerCase().includes(string.toLowerCase()) ||
       model.toLowerCase().includes(string.toLowerCase())
@@ -29,7 +33,6 @@ const Posts = () => {
       return cars;
     }
   };
-  const filteredPosts = cars.filter((car) => postMatches(car, searchTerm));
 
   const postsToDisplay = cars.filter((car) => postMatches(car, searchTerm));
 
@@ -42,9 +45,12 @@ const Posts = () => {
       {carInfo ? (
         <div className="container mt-4">
           <div className="post-header">
-            <button className="btn btn-primary mr-2 create-post">
-              Create Post
-            </button>
+            <Link to="/posts/createPost" element={<CreatePost />}>
+              <button className="btn btn-primary mr-2 create-post">
+                Create Post
+              </button>
+            </Link>
+
             <div className="search-bar">
               <label>🧐 </label>
               <input
