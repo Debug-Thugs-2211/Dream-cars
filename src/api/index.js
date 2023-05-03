@@ -20,8 +20,6 @@ export const registerUser = async (username, password, firstName, lastName) => {
   }
 };
 
-// registerUser("abedj", "ax123498", "abed", "jamous");
-
 export const loginUser = async (username, password) => {
   try {
     const response = await fetch(`http://localhost:4000/api/users/login`, {

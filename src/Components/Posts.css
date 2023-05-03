@@ -48,3 +48,21 @@
   flex-direction: column;
   text-align: center;
 }
+
+.post-header {
+  position: relative;
+}
+
+.search-bar {
+  float: right;
+}
+
+.create-post {
+  margin-bottom: 25px;
+}
+
+.search-input {
+  margin-left: 8px;
+  border: 1px solid black;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 2);
+}

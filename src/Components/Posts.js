@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import "./Posts.css";
 import SinglePost from "./SinglePost";
 
@@ -6,13 +7,33 @@ const Posts = () => {
   const [cars, setCars] = useState([]);
   const [carInfo, setCarInfo] = useState(true);
   const [singleCard, setSingleCard] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // const handleCard = (event) => {
+  //   if (event.type === "mousedown") {
+  //     setCarInfo(false);
+  //   }
+  // };
+  const fetchCars = async () => {
+    const res = await fetch("http://localhost:4000/api/cars");
+    const data = await res.json();
+    setCars(data);
+  };
+
+  const postMatches = (cars, string) => {
+    const { make, model, year } = cars;
+    if (
+      make.toLowerCase().includes(string.toLowerCase()) ||
+      model.toLowerCase().includes(string.toLowerCase())
+    ) {
+      return cars;
+    }
+  };
+  const filteredPosts = cars.filter((car) => postMatches(car, searchTerm));
+
+  const postsToDisplay = cars.filter((car) => postMatches(car, searchTerm));
 
   useEffect(() => {
-    const fetchCars = async () => {
-      const res = await fetch("http://localhost:4000/api/cars");
-      const data = await res.json();
-      setCars(data);
-    };
     fetchCars();
   }, []);
 
@@ -20,8 +41,26 @@ const Posts = () => {
     <>
       {carInfo ? (
         <div className="container mt-4">
+          <div className="post-header">
+            <button className="btn btn-primary mr-2 create-post">
+              Create Post
+            </button>
+            <div className="search-bar">
+              <label>🧐 </label>
+              <input
+                className="search-input"
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+
           <div className="row">
-            {cars.map((car) => (
+            {postsToDisplay.map((car) => (
               <div key={car.id} className="col-md-4 mb-4">
                 <div className="card">
                   <img
