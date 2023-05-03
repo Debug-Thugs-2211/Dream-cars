@@ -45,6 +45,10 @@ router.get("/health", async (req, res, next) => {
 const usersRouter = require("./users");
 router.use("/users", usersRouter);
 
+// ROUTER: /api/cars:
+const carsRouter = require("./cars");
+router.use("/cars", carsRouter);
+
 // router error handler:
 router.use((error, req, res, next) => {
   res.send({

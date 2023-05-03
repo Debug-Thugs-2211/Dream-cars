@@ -39,7 +39,9 @@ const createTables = async () => {
                 price INTEGER NOT NULL,
                 year INTEGER NOT NULL,
                 color VARCHAR(20) NOT NULL,
-                mileage INTEGER NOT NULL
+                mileage INTEGER NOT NULL,
+                "imageUrl" VARCHAR(255) NOT NULL,
+                condition VARCHAR(40) NOT NULL
             );
 
             CREATE TABLE purchases (
@@ -102,6 +104,8 @@ const createInitialPosts = async () => {
         price: 1000,
         color: "blue",
         mileage: 25000,
+        imageUrl: "../asset/honda-civic.webp",
+        condition: "Used-Like New",
       },
       {
         make: "Toyota",
@@ -110,6 +114,8 @@ const createInitialPosts = async () => {
         year: 2015,
         color: "green",
         mileage: 40000,
+        imageUrl: "../asset/toyota-4runner.jpeg",
+        condition: "Used- Very Good",
       },
       {
         make: "Ford",
@@ -117,7 +123,9 @@ const createInitialPosts = async () => {
         price: 1000,
         year: 2022,
         color: "black",
-        mileage: 15000,
+        mileage: 200,
+        imageUrl: "../asset/ford-f-150.webp",
+        condition: "New",
       },
     ];
     const cars = await Promise.all(postsToCreate.map(createCar));
