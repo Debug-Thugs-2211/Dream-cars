@@ -1,39 +1,52 @@
-const client = require('./client');
+const client = require("./client");
 
-const createCar = async ({ make, model, price, year, color, mileage }) => {
-    try {
-        const { rows: [cars ]} = await client.query(
-        `
-        INSERT INTO cars(make, model, price, year, color, mileage)
-        VALUES ($1, $2, $3, $4, $5, $6)
+const createCar = async ({
+  make,
+  model,
+  price,
+  year,
+  color,
+  mileage,
+  imageUrl,
+  condition,
+}) => {
+  try {
+    const {
+      rows: [cars],
+    } = await client.query(
+      `
+        INSERT INTO cars(make, model, price, year, color, mileage, "imageUrl", condition)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
         `,
-        [make, model, price, year, color, mileage]
-        )
-        return cars;
-    } catch (err) {
-      console.log(err);
-    }
-}
-
-const getAllCars = async () => {
-  try {
-    const {rows: [cars]} = await client.query(
-      `
-      SELECT * 
-      FROM cars;
-      `
+      [make, model, price, year, color, mileage, imageUrl, condition]
     );
     return cars;
   } catch (err) {
     console.log(err);
   }
-}
+};
+
+const getAllCars = async () => {
+  try {
+    const { rows } = await client.query(
+      `
+      SELECT * 
+      FROM cars;
+      `
+    );
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const getCarByMake = async (make) => {
   try {
-    const { rows: [cars] } = await client.query(
-    `
+    const {
+      rows: [cars],
+    } = await client.query(
+      `
     SELECT *
     FROM cars
     WHERE make = $1;
@@ -44,11 +57,13 @@ const getCarByMake = async (make) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const getCarById = async (id) => {
   try {
-    const { rows: [cars] } = await client.query(
+    const {
+      rows: [cars],
+    } = await client.query(
       `
       SELECT *
       FROM cars
@@ -60,18 +75,18 @@ const getCarById = async (id) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const updateCar = async (id, ...fields) => {
   const setString = Object.keys(fields.updateFields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(",");
-    if (setString.length === 0) {
-      return;
-    }
+  if (setString.length === 0) {
+    return;
+  }
   try {
     const {
-      rows: [car]
+      rows: [car],
     } = await client.query(
       `
       UPDATE cars
@@ -85,7 +100,7 @@ const updateCar = async (id, ...fields) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const deleteCar = async (id) => {
   try {
@@ -95,13 +110,17 @@ const deleteCar = async (id) => {
       FROM cars
       WHERE id=${id};
       `
-    )
+    );
   } catch (err) {
     console.log(err);
   }
-}
+};
 
-
-
-
-module.exports = { createCar, getAllCars, getCarByMake, getCarById, updateCar, deleteCar }
+module.exports = {
+  createCar,
+  getAllCars,
+  getCarByMake,
+  getCarById,
+  updateCar,
+  deleteCar,
+};

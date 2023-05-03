@@ -41,3 +41,12 @@ export const loginUser = async (username, password) => {
     console.log("error logging in");
   }
 };
+
+const getAllCars = async () => {
+  const response = await fetch("http://localhost:4000/api/cars");
+  const results = await response.json();
+  console.log("CARS: ", results);
+  return results;
+};
+
+getAllCars();
