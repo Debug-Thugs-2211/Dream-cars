@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@material-ui/core";
-import { AccountCircle, Lock } from "@material-ui/icons";
+import { TextField, Button } from "@mui/material";
+import { AccountCircle, Lock } from "@mui/icons-material";
 import "./Register.css";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
@@ -12,10 +12,10 @@ function Login({ setToken, navigate }) {
 
   const handleSubmit = async () => {
     const results = await loginUser(username, password);
+    window.localStorage.setItem("token", results.token);
 
     if (results.token) {
       setToken(results.token);
-      window.localStorage.setItem("token", results.token);
       navigate("/posts");
     } else {
       swal(

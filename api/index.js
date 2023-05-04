@@ -10,7 +10,8 @@ router.use(async (req, res, next) => {
   if (!auth) {
     next();
   } else if (auth.startsWith(prefix)) {
-    const token = auth.slice(prefix.length);
+    const token = auth.slice(prefix.length + 1);
+    console.log(token[0]);
 
     try {
       const user = jwt.verify(token, JWT_SECRET);

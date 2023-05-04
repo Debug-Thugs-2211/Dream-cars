@@ -23,6 +23,7 @@ const Posts = () => {
     const data = await res.json();
     setCars(data);
   };
+  console.log("test from post:", cars);
 
   const postMatches = (cars, string) => {
     const { make, model } = cars;
@@ -42,10 +43,13 @@ const Posts = () => {
 
   return (
     <>
-      {carInfo ? (
+      {carInfo && cars ? (
         <div className="container mt-4">
           <div className="post-header">
-            <Link to="/posts/createPost" element={<CreatePost />}>
+            <Link
+              to="/posts/createPost"
+              element={<CreatePost cars={cars} setCars={setCars} />}
+            >
               <button className="btn btn-primary mr-2 create-post">
                 Create Post
               </button>

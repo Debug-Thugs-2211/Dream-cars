@@ -104,7 +104,8 @@ const createInitialPosts = async () => {
         price: 1000,
         color: "blue",
         mileage: 25000,
-        imageUrl: "../asset/honda-civic.webp",
+        imageUrl:
+          "https://thumbor.forbes.com/thumbor/fit-in/960x/https://www.forbes.com/wheels/wp-content/uploads/2023/03/2023_Honda_Civic_Review1.jpg",
         condition: "Used-Like New",
       },
       {
@@ -114,7 +115,8 @@ const createInitialPosts = async () => {
         year: 2015,
         color: "green",
         mileage: 40000,
-        imageUrl: "../asset/toyota-4runner.jpeg",
+        imageUrl:
+          "https://di-uploads-pod37.dealerinspire.com/toyotaoflincolnpark/uploads/2023/01/2023-Toyota-4Runner-TRD-Pro-Banner.jpg",
         condition: "Used- Very Good",
       },
       {
@@ -124,7 +126,8 @@ const createInitialPosts = async () => {
         year: 2022,
         color: "black",
         mileage: 200,
-        imageUrl: "../asset/ford-f-150.webp",
+        imageUrl:
+          "https://www.ford.com/is/image/content/dam/vdm_ford/live/en_us/ford/nameplate/f-150f-150/2023/collections/dm/22_F150_R7A7574_Tremor_CAN.tif?croppathe=1_3x2&wid=900",
         condition: "New",
       },
     ];

@@ -53,7 +53,10 @@ const App = () => {
           element={<Register setToken={setToken} navigate={navigate} />}
         />
         <Route path="checkout" element={<Checkout />} />
-        <Route path="/posts/createPost" element={<CreatePost />} />
+        <Route
+          path="/posts/createPost"
+          element={<CreatePost token={token} />}
+        />
       </Routes>
     </div>
   );
