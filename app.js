@@ -8,7 +8,11 @@ const client = require("./db/client");
 
 // Setup your Middleware and API Router here
 client.connect();
-
+const path = require('path');
+app.use("/dist", express.static(path.join(__dirname, "dist")));
+ app.get("/", (req,res) => {
+     res.sendFile(path.join(__dirname, "index.html"))
+ });
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
