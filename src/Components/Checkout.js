@@ -39,17 +39,17 @@ const Checkout = () => {
       <h1>Checkout</h1>
       <form>
         <h3>Contact Information</h3>
-          <input type="text" placeholder="Email Address" value={email} onChange={handleChange}></input>
-          <input type="text" placeholder="Phone Number" value={phone} onChange={handleChange}></input>
+          <input type="text" name='email' placeholder="Email Address" value={email} onChange={handleChange}></input>
+          <input type="text" name='phone' placeholder="Phone Number" value={phone} onChange={handleChange}></input>
         <h3>Shipping Information</h3>
-          <input type="text" placeholder="Address" value={address} onChange={handleChange}></input>
-          <input type="text" placeholder="City" value={city} onChange={handleChange}></input>
-          <input type="text" placeholder="State" value={state} onChange={handleChange}></input>
-          <input type="text" placeholder="ZIP Code" value={ZIP} onChange={handleChange}></input>
+          <input type="text" name='address' placeholder="Address" value={address} onChange={handleChange}></input>
+          <input type="text" name='city' placeholder="City" value={city} onChange={handleChange}></input>
+          <input type="text" name='state' placeholder="State" value={state} onChange={handleChange}></input>
+          <input type="text" name='ZIP' placeholder="ZIP Code" value={ZIP} onChange={handleChange}></input>
         <h3>Payment Information</h3>
-          <input type="text" placeholder="Credit Card #" value={card} onChange={handleChange}></input>
-          <input type="text" placeholder="EXP" value={expiration} onChange={handleChange}></input>
-          <input type="text" placeholder="CVV" value={CVV} onChange={handleChange}></input>
+          <input type="text" name='card' placeholder="Credit Card #" value={card} onChange={handleChange}></input>
+          <input type="text" name='expiration' placeholder="EXP" value={expiration} onChange={handleChange}></input>
+          <input type="text" name='CVV' placeholder="CVV" value={CVV} onChange={handleChange}></input>
       </form>
       <button>Submit Order</button>
     </>
