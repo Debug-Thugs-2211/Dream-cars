@@ -41,6 +41,7 @@ export const loginUser = async (username, password) => {
 };
 
 export const createPost = async (
+  token,
   make,
   model,
   price,
@@ -55,7 +56,7 @@ export const createPost = async (
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         make: make,
@@ -68,9 +69,22 @@ export const createPost = async (
         condition: condition,
       }),
     });
-    const results = response.json();
+    const results = await response.json();
+    console.log("CreatePOST: ", results);
     return results;
   } catch (error) {
-    console.log("this is an error message");
+    console.log(error);
   }
 };
+
+// createPost(
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJhYmVkaiIsImlhdCI6MTY4MzE0MDM2N30.b9xPPEWohdTFpTQpaPRpaWNFGcSiyV9gt8YWlGUI64E",
+//   "toyota",
+//   "corola",
+//   2000,
+//   2018,
+//   "black",
+//   12000,
+//   "yes.png",
+//   "used"
+// );
