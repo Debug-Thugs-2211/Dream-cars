@@ -48,7 +48,7 @@ const Posts = () => {
                     >
                       See Detail
                     </button>
-                    <button className="btn add-to-cart">Add to Cart</button>
+                    <button className="btn add-to-cart" >Add to Cart</button>
                   </div>
                 </div>
               </div>
