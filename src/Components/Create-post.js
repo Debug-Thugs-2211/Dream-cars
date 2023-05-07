@@ -31,7 +31,7 @@ const CreatePost = ({ cars, setCars, token }) => {
       condition
     );
     // console.log("test1:", cars);
-    console.log("test2: ", results);
+    // console.log("test2: ", results);
     if (token) {
       //   setCars([...cars, results]);
       navigate("/posts");
@@ -131,11 +131,3 @@ const CreatePost = ({ cars, setCars, token }) => {
 };
 
 export default CreatePost;
-
-// import React from "react";
-
-// const CreatePost = () => {
-//   return <h1>Create Post</h1>;
-// };
-
-// export default CreatePost;

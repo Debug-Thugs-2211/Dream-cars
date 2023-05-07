@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CreatePost from "./Create-post";
-
 import "./Posts.css";
 import SinglePost from "./SinglePost";
 
@@ -23,7 +22,7 @@ const Posts = () => {
     const data = await res.json();
     setCars(data);
   };
-  console.log("test from post:", cars);
+  // console.log("test from post:", cars);
 
   const postMatches = (cars, string) => {
     const { make, model } = cars;
