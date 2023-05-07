@@ -13,7 +13,7 @@ export const registerUser = async (username, password, firstName, lastName) => {
       }),
     });
     const results = await response.json();
-    console.log("FROM REGISTER API: ", results);
+    // console.log("FROM REGISTER API: ", results);
     return results;
   } catch (error) {
     console.log("error registering user");
@@ -33,7 +33,7 @@ export const loginUser = async (username, password) => {
       }),
     });
     const results = await response.json();
-    console.log("FROM LOGIN API: ", results);
+    // console.log("FROM LOGIN API: ", results);
     return results;
   } catch (error) {
     console.log("error logging in");
@@ -70,7 +70,7 @@ export const createPost = async (
       }),
     });
     const results = await response.json();
-    console.log("CreatePOST: ", results);
+    // console.log("CreatePOST: ", results);
     return results;
   } catch (error) {
     console.log(error);
