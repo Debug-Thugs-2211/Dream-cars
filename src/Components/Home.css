@@ -1,46 +1,7 @@
-.imageSlides {
-    display: none;
-}
-
 img {
     margin: auto;
     display: block;
     width: 50%;
-}
-
-.images-slideshow {
-    position: relative;
-    display: flex;
-    justify-content: right;
-}
-
-.slider-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 8px 16px;
-    margin-top: -22px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-
-.previous {
-    left: 2%;
-}
-
-.next {
-    right: 2%;
-}
-
-.previous:hover,
-.next:hover {
-    color: rgb(255, 253, 253);
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 p {
@@ -49,3 +10,123 @@ p {
     flex-direction: column;
 
 }
+
+#background {
+    background-color: tan;
+    display: flex;
+    height: 100%;
+}
+
+.checkMark {
+    position: relative;
+    display: inline-block;
+    width: 30px;   
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 2px;
+}
+
+img {
+    vertical-align: middle;
+    padding: 15px;
+    width: auto;
+    height: auto;
+}
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+.checkMark::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50%;
+    width: 3px;
+    background-color: green;
+    content: "";
+    transform: translateX(10px) rotate(-45deg);
+    transform-origin: left bottom;
+}
+
+.checkMArk::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: green;
+    content: "";
+    transform: translate(10px) rotate(-45deg);
+    transform-origin: left bottom;
+}
+
+.mySlides {
+    display: none;
+}
+
+
+
+.fade:not(.show) {
+    opacity: 1;
+}
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+    
+.welcome {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: auto;
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.thankyou {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
