@@ -10,13 +10,6 @@ const Posts = () => {
   const [singleCard, setSingleCard] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
-  // const handleCard = (event) => {
-  //   console.log(event.type);
-  //   if (event.type === "mousedown") {
-
-  //     return;
-  //   }
-  // };
   const fetchCars = async () => {
     const res = await fetch("http://localhost:4000/api/cars");
     const data = await res.json();
@@ -85,7 +78,6 @@ const Posts = () => {
                       Year: {car.year} <br />
                       price: ${car.price}
                     </p>
-                    {/* <p className="card-text">Price: ${car.price}</p> */}
                     <button
                       className="btn btn-primary mr-2"
                       data-id={car.id}
