@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/checkout";
 import Home from "./components/Home";
+import CreatePost from "./components/Create-post";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -52,6 +53,10 @@ const App = () => {
           element={<Register setToken={setToken} navigate={navigate} />}
         />
         <Route path="checkout" element={<Checkout />} />
+        <Route
+          path="/posts/createPost"
+          element={<CreatePost token={token} />}
+        />
       </Routes>
     </div>
   );

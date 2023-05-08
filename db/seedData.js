@@ -104,7 +104,8 @@ const createInitialPosts = async () => {
         price: 1000,
         color: "blue",
         mileage: 25000,
-        imageUrl: "../asset/honda-civic.webp",
+        imageUrl:
+          "https://thumbor.forbes.com/thumbor/fit-in/960x/https://www.forbes.com/wheels/wp-content/uploads/2023/03/2023_Honda_Civic_Review1.jpg",
         condition: "Used-Like New",
       },
       {
@@ -114,7 +115,8 @@ const createInitialPosts = async () => {
         year: 2015,
         color: "green",
         mileage: 40000,
-        imageUrl: "../asset/toyota-4runner.jpeg",
+        imageUrl:
+          "https://di-uploads-pod37.dealerinspire.com/toyotaoflincolnpark/uploads/2023/01/2023-Toyota-4Runner-TRD-Pro-Banner.jpg",
         condition: "Used- Very Good",
       },
       {
@@ -124,9 +126,101 @@ const createInitialPosts = async () => {
         year: 2022,
         color: "black",
         mileage: 200,
-        imageUrl: "../asset/ford-f-150.webp",
+        imageUrl:
+          "https://www.ford.com/is/image/content/dam/vdm_ford/live/en_us/ford/nameplate/f-150f-150/2023/collections/dm/22_F150_R7A7574_Tremor_CAN.tif?croppathe=1_3x2&wid=900",
         condition: "New",
       },
+      {
+        make: "Dodge",
+        model: "RAM 1500",
+        price: 20000,
+        year: 2019,
+        color: "blue",
+        mileage: 15000,
+        imageUrl:'https://di-uploads-pod5.dealerinspire.com/aventurachryslerjeepdodgeram/uploads/2018/03/aventura2019-ram-1500-special-editions-hydro-blue-sport-1024x722.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Kia",
+        model: "Stinger",
+        price: 25000,
+        year: 2020,
+        color: "orange",
+        mileage: 50000,
+        imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/2020-kia-stinger-gts-showfloor-102-1555603482.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Chevrolet",
+        model: "Camaro",
+        price: 25000,
+        year: 2021,
+        color: "green",
+        mileage: 13000,
+        imageUrl: 'https://www.motorbiscuit.com/wp-content/uploads/2020/08/Chevrolet-Camaro.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Mercedes-Benz",
+        model: "SL65 AMG",
+        price: 45000,
+        year: 2021,
+        color: "purple",
+        mileage: 15000,
+        imageUrl:'https://c4.wallpaperflare.com/wallpaper/724/423/824/purple-tuning-mercedes-benz-wallpaper-preview.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Ford",
+        model: "Shelby Mustang GT500",
+        price: 35000,
+        year: 2020,
+        color: "red",
+        mileage: 55000,
+        imageUrl: 'https://s.abcnews.com/images/Business/shelby-mustang-ht-3-aa-191115_hpEmbed_4x3_992.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Jeep",
+        model: "Wrangler Rubicon",
+        price: 35000,
+        year: 2022,
+        color: "grey",
+        mileage: 25000,
+        imageUrl: 'https://cdn.motor1.com/images/mgl/LZbwQ/s1/2021-jeep-wrangler-rubicon-392-front-view.webp',
+        condition: 'used'
+      },
+      {
+        make: "Cadillac",
+        model: "Escalade",
+        price: 75000,
+        year: 2021,
+        color: "black",
+        mileage: 25000,
+        imageUrl: 'https://www.cars.com/i/large/in/v2/stock_photos/621a1c0f-48eb-4c5c-985e-8980806c13ad/5a07ac5a-eb16-42e4-a75e-625152d5648b.png',
+        condition: 'used'
+      },
+      {
+        make: "BMW",
+        model: "M3",
+        price: 85000,
+        year: 2022,
+        color: "white",
+        mileage: 5000,
+        imageUrl: 'https://www.bmwusa.com/content/dam/bmwusa/common/vehicles/2022/my23/m-models/m3-sedan/overview/mobile/BMW-SOC24-M3CS-DynamicHighlights-Mobile.jpg',
+        condition: 'used'
+      },
+      {
+        make: "Porsche",
+        model: "GT2 RS",
+        price: 95000,
+        year: 2021,
+        color: "blue",
+        mileage: 3000,
+        imageUrl: 'https://www.performancealloys.com/media/wysiwyg/Instagram-Cars-Main.jpg',
+        condition: 'used'
+      }
+
     ];
     const cars = await Promise.all(postsToCreate.map(createCar));
 

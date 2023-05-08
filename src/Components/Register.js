@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@material-ui/core";
-import { AccountCircle, Lock, Person } from "@material-ui/icons";
+import { TextField, Button } from "@mui/material";
+import { AccountCircle, Lock, Person } from "@mui/icons-material";
 import "./Register.css";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";

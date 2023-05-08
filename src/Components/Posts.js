@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
+import CreatePost from "./Create-post";
 import "./Posts.css";
 import SinglePost from "./SinglePost";
 
@@ -9,19 +10,15 @@ const Posts = () => {
   const [singleCard, setSingleCard] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
-  // const handleCard = (event) => {
-  //   if (event.type === "mousedown") {
-  //     setCarInfo(false);
-  //   }
-  // };
   const fetchCars = async () => {
     const res = await fetch("http://localhost:4000/api/cars");
     const data = await res.json();
     setCars(data);
   };
+  // console.log("test from post:", cars);
 
   const postMatches = (cars, string) => {
-    const { make, model, year } = cars;
+    const { make, model } = cars;
     if (
       make.toLowerCase().includes(string.toLowerCase()) ||
       model.toLowerCase().includes(string.toLowerCase())
@@ -29,7 +26,6 @@ const Posts = () => {
       return cars;
     }
   };
-  const filteredPosts = cars.filter((car) => postMatches(car, searchTerm));
 
   const postsToDisplay = cars.filter((car) => postMatches(car, searchTerm));
 
@@ -39,12 +35,18 @@ const Posts = () => {
 
   return (
     <>
-      {carInfo ? (
+      {carInfo && cars ? (
         <div className="container mt-4">
           <div className="post-header">
-            <button className="btn btn-primary mr-2 create-post">
-              Create Post
-            </button>
+            <Link
+              to="/posts/createPost"
+              element={<CreatePost cars={cars} setCars={setCars} />}
+            >
+              <button className="btn btn-primary mr-2 create-post">
+                Create Post
+              </button>
+            </Link>
+
             <div className="search-bar">
               <label>🧐 </label>
               <input
@@ -76,7 +78,6 @@ const Posts = () => {
                       Year: {car.year} <br />
                       price: ${car.price}
                     </p>
-                    {/* <p className="card-text">Price: ${car.price}</p> */}
                     <button
                       className="btn btn-primary mr-2"
                       data-id={car.id}

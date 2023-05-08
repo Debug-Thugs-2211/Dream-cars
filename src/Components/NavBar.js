@@ -6,7 +6,10 @@ const NavBar = ({ logout, token }) => {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img src="../asset/Dream-Cars-2.png" alt="Logo" />
+        <img
+          src="https://magiccitydreamcars.com/wp-content/uploads/2021/12/Dream-Cars-2.png"
+          alt="Logo"
+        />
       </div>
       <div className="navbar-links">
         <Link to="/">Home</Link>
