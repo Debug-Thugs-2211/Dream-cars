@@ -12,7 +12,6 @@ import Register from "./components/Register";
 import Checkout from "./components/checkout";
 import Home from "./components/Home";
 import CreatePost from "./components/Create-post";
-import Footer from "./components/Footer";
 
 const App = () => {
   const [token, setToken] = useState("");
