@@ -17,7 +17,7 @@ function Home() {
         />
       </div>
       <div className="home-heading">
-        <h1 className="title-home">Welcome to Dram Cars</h1>
+        <h1 className="title-home">Welcome to Dream Cars</h1>
         <p className="title-home2">Luxury & Exotic Cars On Demand</p>
       </div>
     </div>
