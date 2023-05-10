@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CreatePost from "./Create-post";
 import "./Posts.css";
 import SinglePost from "./SinglePost";
+import Footer from "./Footer.js"
 
 const Posts = () => {
   const [cars, setCars] = useState([]);
@@ -98,6 +99,7 @@ const Posts = () => {
       ) : (
         <SinglePost singleCard={singleCard} setCarInfo={setCarInfo} />
       )}
+      <Footer />
     </>
   );
 };

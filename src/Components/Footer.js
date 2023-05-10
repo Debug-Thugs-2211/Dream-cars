@@ -1,27 +1,22 @@
 import React from "react";
+import "./Footer.css";
 
 const Footer = () => {
     return (
         <>
-         <div>
-        <h1>Website Developers</h1>
+        
+          <div className="footer"> 
+            <p className="footer-p">Website Developers</p>
 
-        <img href src=""></img>
-        <h2>Abed Jamous</h2>
-        <a href='https://github.com/AbedJ2023'>GitHub</a>
+            <a className="footer-a" href='https://github.com/AbedJ2023'>Abed Jamous</a>
 
-        <img href src=""></img>
-        <h2>Christine Dickens</h2>
-        <a href="https://github.com/cdickens14">GitHub</a>
+            <a className="footer-a" href="https://github.com/cdickens14">Christine Dickens</a>
 
-        <img href src=""></img>
-        <h2>Emily Cooke</h2>
-        <a href="https://github.com/EmSabineCooke">GitHub</a>
+            <a className="footer-a" href="https://github.com/EmSabineCooke">Emily Cooke</a>
 
-        <img href src=""></img>
-        <h2>Gitonga Nyaga</h2>
-        <a href="https://github.com/Richierichman15">GitHub</a>
-      </div>
+            <a className="footer-a" href="https://github.com/Richierichman15">Gitonga Nyaga</a>
+          </div>
+          
         </>
     )
 };

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "./Home.css";
+import Footer from "./Footer.js"
 
 const Home = () => {
-  
+
   let slides = document.getElementsByClassName("mySlides");
 useEffect(() => {
   showSlides(1)
@@ -18,12 +19,10 @@ const showSlides = (n) => {
     slides[i].style.display = "none";
   }
   slides[slideIndex-1].style.display = "block";
-  console.log('slides', slides);
 }
 let slideIndex = 1;
 showSlides(slideIndex);
 const plusSlides = (n) => {
-  console.log('here', n);
   showSlides(slideIndex += n);
 }
 const currentSlide = (n) => {
@@ -84,6 +83,7 @@ const currentSlide = (n) => {
           We look forward to helping you find your perfect car!
         </p>
       </div>
+      <Footer />
     </div>
   )
 };
