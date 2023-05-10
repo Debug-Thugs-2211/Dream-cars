@@ -36,7 +36,7 @@ const Posts = () => {
   return (
     <>
       {carInfo && cars ? (
-        <div className="container mt-4">
+        <div className="container mt-4 post-container">
           <div className="post-header">
             <Link
               to="/posts/createPost"
