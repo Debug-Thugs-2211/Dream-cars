@@ -1,7 +1,4 @@
 # Dream-cars
 
-This project will be an e-commerce website that sell all type of cars, new or used.
+Dream Cars is a collaborative group project that combines the efforts of 4 junior web developers (Christine Dickens, Gitonga Nyaga, Abed Jamous and Emily Cooke) to create an e-commerce website where anyone can buy any dream car that they want. Our main purpose for this project is to not only improve our coding skills but to also learn about the process of working with other developers on a project. We utilized the skills that we were taught throughout our bootcamp experience to put together one final project to showcase all that we learned. Our tech stack consisted of ReactJS, PostgresQL, Node, Express and Git. Each of us took turns being Gitmaster, Testmaster and Codemaster during our daily stand-ups to simulate a real-world work environment. During the 5 weeks we worked on this project, we all learned how to effectively and clearly communicate problems to each other as well as planning each ticket that we needed to create to build this entire website. 
 
-//newer comment - Christine
-Hello, this is Abed :)
-//howdy
